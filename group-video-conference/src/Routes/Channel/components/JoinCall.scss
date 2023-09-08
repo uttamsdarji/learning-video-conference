@@ -1,0 +1,125 @@
+.join-call-container {
+  width: 850px;
+  max-width: 100%;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  .channel-name {
+    text-align: center;
+    margin-top: 0;
+  }
+  .local-video-wrapper {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 30px;
+    .local-video-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 300px;
+      position: relative;
+      .local-video-player {
+        height: 300px;
+        width: 100%;
+        video {
+          border-radius: 8px;
+        }
+      }
+      .video-controls-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        position: absolute;
+        bottom: 10px;
+        .video-control {
+          width: 45px;
+          height: 45px;
+          border-radius: 100%;
+          border: 1px solid #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px;
+          cursor: pointer;
+          .control-icon {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+          }
+          &.on.mic .control-icon {
+            background-image: url("../../../assets/mic-on.svg");
+          }
+          &.off.mic .control-icon {
+            background-image: url("../../../assets/mic-off.svg");
+          }
+          &.on.video .control-icon {
+            background-image: url("../../../assets/video-on.svg");
+          }
+          &.off.video .control-icon {
+            background-image: url("../../../assets/video-off.svg");
+          }
+          &.on:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+          }
+          &.off {
+            box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+            background-color: #cd3a30;
+            border-color: #cd3a30;
+          }
+        }
+      }
+    }
+  }
+  .form-group {
+    margin-bottom: 15px;
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+  }
+
+  button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 5px;
+    width: 100%;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  .join-call-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(0 0 0 / 50%);
+  }
+}

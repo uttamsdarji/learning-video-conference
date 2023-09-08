@@ -1,0 +1,10 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  .indicator {
+    max-width: 70px;
+  }
+}
