@@ -111,10 +111,6 @@ io.on("connection", socket => {
   // console.log("webscoket connected");
 });
 
-httpServer.listen(3002, () => {
-  console.log(`Group Video Conference listening on 3002`);
-});
-
 if (process.env.NODE_ENV == "production") {
   httpsServer.listen(443, () => {
     console.log(`HTTPS Server app listening on port 443`);
