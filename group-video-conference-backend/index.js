@@ -1,8 +1,13 @@
-var express = require("express");
-var http = require("http");
-var bodyParser = require("body-parser");
-var { RtcTokenBuilder, RtcRole } = require("agora-token");
-var { Server } = require("socket.io");
+const express = require("express");
+const http = require("http");
+const https = require("https");
+const bodyParser = require("body-parser");
+const { RtcTokenBuilder, RtcRole } = require("agora-token");
+const { Server } = require("socket.io");
+
+const privateKey = process.env.NODE_ENV == "production" ? fs.readFileSync("/etc/letsencrypt/live/learningapi.uttamsdarji.online/privkey.pem", "utf8") : "";
+const certificate = process.env.NODE_ENV == "production" ? fs.readFileSync("/etc/letsencrypt/live/learningapi.uttamsdarji.online/cert.pem", "utf8") : "";
+const ca = process.env.NODE_ENV == "production" ? fs.readFileSync("/etc/letsencrypt/live/learningapi.uttamsdarji.online/chain.pem", "utf8") : "";
 
 let remoteUsersData = {};
 
@@ -10,7 +15,7 @@ const prompts = ["No attendee has joined yet. Share the meeting link with the at
 
 const app = express();
 
-var rawBodySaver = function (req, res, buf, encoding) {
+const rawBodySaver = function (req, res, buf, encoding) {
   if (buf && buf.length) {
     req.rawBody = buf.toString(encoding || "utf8");
   }
@@ -90,7 +95,10 @@ app.get("/fetch-token", async (req, res) => {
   res.json(resData);
 });
 
+const credentials = { key: privateKey, cert: certificate, ca: ca };
+
 let httpServer = http.createServer(app);
+let httpsServer = https.createServer(credentials, app);
 
 const io = new Server(httpServer, {
   cors: {
@@ -106,3 +114,16 @@ io.on("connection", socket => {
 httpServer.listen(3002, () => {
   console.log(`Group Video Conference listening on 3002`);
 });
+
+if (process.env.NODE_ENV == "production") {
+  httpsServer.listen(443, () => {
+    console.log(`HTTPS Server app listening on port 443`);
+  });
+  httpServer.listen(80, () => {
+    console.log(`HTTP Server app listening on port 80`);
+  });
+} else {
+  httpServer.listen(3002, () => {
+    console.log(`Group Video Conference listening on 3002`);
+  });
+}
