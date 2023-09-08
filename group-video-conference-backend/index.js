@@ -4,6 +4,7 @@ const https = require("https");
 const bodyParser = require("body-parser");
 const { RtcTokenBuilder, RtcRole } = require("agora-token");
 const { Server } = require("socket.io");
+const fs = require("fs");
 
 const privateKey = process.env.NODE_ENV == "production" ? fs.readFileSync("/etc/letsencrypt/live/learningapi.uttamsdarji.online/privkey.pem", "utf8") : "";
 const certificate = process.env.NODE_ENV == "production" ? fs.readFileSync("/etc/letsencrypt/live/learningapi.uttamsdarji.online/cert.pem", "utf8") : "";
