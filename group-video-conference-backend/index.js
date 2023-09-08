@@ -101,7 +101,7 @@ const credentials = { key: privateKey, cert: certificate, ca: ca };
 let httpServer = http.createServer(app);
 let httpsServer = https.createServer(credentials, app);
 
-const io = new Server(httpServer, {
+const io = new Server(process.env.NODE_ENV == "production" ? httpServer : httpServer, {
   cors: {
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
