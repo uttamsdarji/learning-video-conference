@@ -10,8 +10,6 @@ import { io } from "socket.io-client";
 import "react-toastify/dist/ReactToastify.css";
 import "./Channel.scss";
 
-const dummyPrompts = ["Attendee Y expresses difficulty in staying motivated. Suggest techniques to maintain motivation and overcome procrastination.", "Attendee Z is struggling with time management. Recommend effective time-blocking strategies to enhance productivity.", "Attendee A mentions trouble with work-life balance. Share insights on setting boundaries and prioritizing personal and professional commitments.", "Attendee B is interested in improving communication skills. Offer advice on active listening techniques and effective ways to express ideas.", "Attendee C is feeling overwhelmed by a heavy workload. Propose methods to manage stress and handle multiple tasks efficiently.", "Attendee D wants to enhance their public speaking abilities. Provide tips for building confidence and delivering compelling presentations.", "Attendee E is looking for ways to improve problem-solving skills. Share a practical approach to tackle complex issues methodically.", "Attendee F is keen to learn about self-motivation. Suggest resources and strategies for maintaining a positive mindset and staying motivated.", "Attendee G is experiencing difficulties in setting and achieving long-term goals. Offer guidance on SMART goal setting and tracking progress.", "Attendee H is interested in enhancing leadership skills. Recommend books, courses, or exercises to develop leadership qualities and influence effectively."];
-
 const config = { mode: "rtc", codec: "vp9" };
 const useClient = createClient(config);
 
